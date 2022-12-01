@@ -7,14 +7,17 @@ var jumping = 0;
 var counter = 0;
 
 // adding event listner and variables to return values proportional to my page
-// This sets the hole the player must go through to random values (ranged in px)
+// This sets the hole the player must go through to random values (ranged in px proportional to my screen (500 px))
 hole.addEventListener('animationiteration', () => {
     var random = -((Math.random()*300)+150);
     hole.style.top = random + "px";
     counter++;
 });
 
-//
+// gravity portion, using top value to grab the top of my PC, every 10ms returns charactertop div
+// when the function runs it moves my PC down
+// using the top value of the hole, and the left values from my obstacle creating an outcome where..
+// touching the hole does not end the game but not touching the hole and touching the obstacle results in an end of game
 setInterval(function(){
     var PCTop = parseInt(window.getComputedStyle(PC).getPropertyValue("top"));
     if(jumping==0){
@@ -30,7 +33,9 @@ setInterval(function(){
     }
 },10);
 
-//Basic jumping function for my PC, 
+//jumping function, if statements used to only the change top if we are jumping
+//jumps get set back to 0 so it can stop. 
+// intervals used to make the inbetween of jumping/ falling as smooth as possible (with the right values)
 
 function jump(){
     jumping = 1;
